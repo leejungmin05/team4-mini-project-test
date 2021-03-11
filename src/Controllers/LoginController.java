@@ -29,6 +29,8 @@ public class LoginController implements Initializable{
 		ls = new LoginServiceImpl();
 		js = new JoinServiceImpl();
 		ms = new  MainStockServiceImpl();
+		
+		
 	}
 	
 	
