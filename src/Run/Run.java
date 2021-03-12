@@ -17,7 +17,7 @@ public class Run extends Application{
 		
 		//컨드롤러를 넣어주면 (fxid나 fxml에 있는 값들을 받아올수있어서 해놓은거임)
 		LoginController loginController = loader.getController();
-		loginController.setRoot(root);
+		loginController.setRoot(root); // 여기가 값 받아다 전달하는 부분 여기가 제일먼저긴 함
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
