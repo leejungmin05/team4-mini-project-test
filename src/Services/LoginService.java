@@ -10,6 +10,7 @@ public interface LoginService {
 	public void setController(Parent root); //루트값 컨트롤러에서 받아오기
 	public void newLoginView();
 	public void setJoinRoot(Parent Jroot); // 회원가입창 닫기위해 join의 루트값 받아오는 메소드 
+	public void setRoot(Parent root); // 자기 루트 받아오는거
 	
 	
 	

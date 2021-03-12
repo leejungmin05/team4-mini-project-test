@@ -17,10 +17,16 @@ public class LoginServiceImpl implements LoginService {
 	private TextField txtId;
 	private TextField txtPwd;
 	private Parent Jroot;
+	private Parent root;
+	private Stage LoginStage;
 
 	private DBService dbservice;
 	private MainStockService ms;
 
+	public void setRoot(Parent root) {
+		
+	}
+	
 	public void setJoinRoot(Parent Jroot) {
 		this.Jroot = Jroot;
 	}
@@ -28,8 +34,8 @@ public class LoginServiceImpl implements LoginService {
 	
 	public void newLoginView() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginView.fxml"));
-		Stage LoginStage = new Stage();
-		Parent root = null;
+		LoginStage = new Stage();
+		root = null;
 		try {
 			root = loader.load();
 		} catch (IOException e) {
@@ -60,6 +66,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public void setController(Parent root) {
+		this.root = root;
 		txtId = (TextField) root.lookup("#txtId");
 		txtPwd = (TextField) root.lookup("#txtPwd");
 	}
@@ -68,6 +75,8 @@ public class LoginServiceImpl implements LoginService {
 	public void Login() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		if (dbservice.selectId(txtId.getText(), txtPwd.getText()) == 1) {
+			LoginStage = (Stage) root.getScene().getWindow();
+			LoginStage.close();
 			ms.newWindowMainStock();
 		} else if (dbservice.selectId(txtId.getText(), txtPwd.getText()) == -0) {
 			alert.setContentText("아이디가 틀렸습니다");

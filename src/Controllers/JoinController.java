@@ -35,7 +35,9 @@ public class JoinController implements Initializable{
 	
 	public void btnJoin() {
 		if(js.CheckTxt()) {
+			ls.newLoginView();
 			js.JoinInsert();
+			
 		}
 		
 	}
