@@ -5,11 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controllers.LoginController">
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <TextField fx:id="txtId" layoutX="38.0" layoutY="66.0" />
-      <Button layoutX="211.0" layoutY="66.0" mnemonicParsing="false" onAction="#btnLogin" text="로그인" />
+      <Button layoutX="223.0" layoutY="66.0" mnemonicParsing="false" onAction="#btnLogin" text="로그인" />
       <Button layoutX="211.0" layoutY="110.0" mnemonicParsing="false" onAction="#btnJoin" text="회원가입" />
       <PasswordField fx:id="txtPwd" layoutX="38.0" layoutY="110.0" />
    </children>
