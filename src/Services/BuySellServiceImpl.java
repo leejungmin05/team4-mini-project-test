@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -25,8 +26,10 @@ public class BuySellServiceImpl implements BuySellService {
 		this.root = root;
 		
 		stockList = (ListView<String>) root.lookup("#stockList");
+		stockArea = (AreaChart)root.lookup("#stockArea");
 		addStockList();
-		ChoStack();// 여기서 실행, 한번 메소드 실행만되고 등록만 된다면 사용가능한듯
+		ChoStack();// 여기서 실행, 한번 메소드 실행만되고 등록만 된다면 사용가능한듯 이게 등록해야 터치시 반응 얻을수있음
+		
 	}
 
 	@Override
@@ -43,11 +46,27 @@ public class BuySellServiceImpl implements BuySellService {
 		
 	}
 	
+	public void setChart(String title) {
+		XYChart.Series series = new XYChart.Series();
+		series.setName(title);
+		series.setData(FXCollections.observableArrayList(
+				new XYChart.Data("2015" ,10 ),
+				new XYChart.Data("2016" ,20 ),
+				new XYChart.Data("2017" ,7 ),
+				new XYChart.Data("2019" ,1 )));
+		
+		stockArea.getData().add(series);
+	}
+	
+	@Override
 	public void ChoStack() {
 		stockList.getSelectionModel().selectedIndexProperty().addListener((a,b,c)->{
 			System.out.println("형식:" + a);
 			System.out.println("이전선택값: "+b);
 			System.out.println("지금선택값: "+ c);
+			
+			
+			setChart(stockString.get((int)c));
 //			fximageView.setImage(
 //					new Image("/resources/phone/phone0"+(int)c+".png"));
 		
