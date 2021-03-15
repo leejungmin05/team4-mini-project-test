@@ -58,8 +58,9 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int InsertDB(User user) {
-		// 무슨차이인지 알수가 없네 일단 에러 발견했는데 뭐가 문제인지도 모른채 해결함
+		// 세미콜론이 알아서 붙게됨 , 또한 작은따옴표도 알아서붙음
 		String sql = "insert into stUser values(?,?,?,?,?)";
+		// insert into stUser values('hi','1234','sj',?,?)
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
@@ -71,8 +72,6 @@ public class DBServiceImpl implements DBService {
 			ps.setString(3, user.getName());
 			ps.setString(4, user.getEmail());
 			ps.setInt(5, user.getMoney());
-
-			
 
 			ps.executeQuery();
 			
@@ -96,8 +95,9 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public void DBBring() {
+		// "select * from stUser where userId = "+"'"+ id +"'"
+		String sql = "select * from stUser ";
 		
-		String sql = "select * from stUser";
 		Connection con = null;
 		PreparedStatement ps = null;
 		
