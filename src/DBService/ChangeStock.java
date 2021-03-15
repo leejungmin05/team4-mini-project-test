@@ -5,4 +5,6 @@ package DBService;
 // 주식의 핵심 인터페이스 , 주식의 랜덤적인 변동을 해주는 서비스이다
 public interface ChangeStock {
 	public int change(String chStockName,int chMoney); // 바뀔 머니가 들어가면 그값대로 변경
+	public void preChange(String chStockName);
+	public void prepreChange(String chStockName);
 }

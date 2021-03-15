@@ -42,7 +42,7 @@ public class MainStackSystem extends Thread{
 	                System.out.println("주식 변동프로그램  작동중 : " + i);
 	                randomPrice = Math.random();
 	                randomStackName = Math.random();
-	                int intPrice = (int )(randomPrice * 35000)+ 27000;
+	                int intPrice = (int )(randomPrice * 70000)+ 7000;
 	                // 0부터 리스트 사이즈까지 랜덤으로
 	                int indexStackName = (int )(randomPrice * SDBS.getStockList().getArrStoList().size())+ 0; // 이거수정
 	                // 여기에 전달해서 그값을 변동시키면 될듯 
@@ -51,7 +51,19 @@ public class MainStackSystem extends Thread{
 	                
 	                System.out.println( SDBS.getStockList().getArrStoList().get(indexStackName).getStockName());
 	                System.out.println(intPrice);
+	                
+	                // 업데이트가 완료되면 pre와 pre pre를 또 같이 업데이트 해주는 메소드가 필요할듯 
+	    			// 밑의 executeQuery 하기 직전에 값을 받아서 옮겨넣어줘야할듯
+	                
+	                chst.prepreChange(SDBS.getStockList().getArrStoList().get(indexStackName).getStockName());
+	             
+	                chst.preChange(SDBS.getStockList().getArrStoList().get(indexStackName).getStockName());
+	                
 	                chst.change(SDBS.getStockList().getArrStoList().get(indexStackName).getStockName(), intPrice);
+	                Thread.sleep(3000);
+	                
+	                
+	                
 	                i++;
 	            }
 	        }catch(InterruptedException e)
