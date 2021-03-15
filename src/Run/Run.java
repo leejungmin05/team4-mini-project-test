@@ -1,6 +1,7 @@
 package Run;
 
 import Controllers.LoginController;
+import Services.MainStackSystem;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Run extends Application{
+	
+	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -20,12 +23,18 @@ public class Run extends Application{
 		loginController.setRoot(root); // 여기가 값 받아다 전달하는 부분 여기가 제일먼저긴 함
 		
 		primaryStage.setScene(scene);
+		
 		primaryStage.show();
+		
+		
 		
 	}
 	
 	public static void main(String[] args) {
+		MainStackSystem mss = new MainStackSystem();
+		mss.start(); //  아니 이거 어케끄는지는 나중에 생각
 		launch();
+		
 	}
 
 }
