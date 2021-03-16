@@ -9,9 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Run extends Application{
-	
-	
-
+	static String NOWUSER ;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginView.fxml"));
@@ -30,6 +28,20 @@ public class Run extends Application{
 		
 	}
 	
+	
+	
+	public static String getNOWUSER() {
+		return NOWUSER;
+	}
+
+
+
+	public static void setNOWUSER(String nOWUSER) {
+		NOWUSER = nOWUSER;
+	}
+
+
+
 	public static void main(String[] args) {
 		MainStackSystem mss = new MainStackSystem();
 		mss.start(); //  아니 이거 어케끄는지는 나중에 생각

@@ -11,7 +11,6 @@ public class User {
 		this.Money = 3000000; // 300만원 지급
 	}
 	
-	
 	public String getId() {
 		return id;
 	}

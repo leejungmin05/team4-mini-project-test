@@ -2,9 +2,12 @@ package Services;
 
 import java.io.IOException;
 
+import Controllers.BuySellController;
 import Controllers.LoginController;
 import DBService.DBService;
 import DBService.DBServiceImpl;
+import Model.NowUser;
+import Run.Run;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,9 +22,9 @@ public class LoginServiceImpl implements LoginService {
 	private Parent Jroot;
 	private Parent root;
 	private Stage LoginStage;
-
 	private DBService dbservice;
 	private MainStockService ms;
+	
 
 	public void setRoot(Parent root) {
 		
@@ -75,10 +78,11 @@ public class LoginServiceImpl implements LoginService {
 	public void Login() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		if (dbservice.selectId(txtId.getText(), txtPwd.getText()) == 1) {
+			Run.setNOWUSER(txtId.getText()); // 스태틱 유저 받는것
 			LoginStage = (Stage) root.getScene().getWindow();
 			LoginStage.close();
 			ms.newWindowMainStock();
-		} else if (dbservice.selectId(txtId.getText(), txtPwd.getText()) == -0) {
+		} else if (dbservice.selectId(txtId.getText(), txtPwd.getText()) == -1) {
 			alert.setContentText("아이디가 틀렸습니다");
 			alert.show();
 			// 아이디가 없음
