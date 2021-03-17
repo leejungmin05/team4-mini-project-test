@@ -1,11 +1,13 @@
 package Model;
 
+
 public class Stock {
 	private String StockName;
 	private int StockPrice;
 	private int preStockPrice;
 	private int prepreStockPrice;
-	
+
+
 	public int getPreStockPrice() {
 		return preStockPrice;
 	}

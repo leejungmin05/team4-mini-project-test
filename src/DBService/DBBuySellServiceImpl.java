@@ -12,7 +12,7 @@ import Model.StockUserDTO;
 
 public class DBBuySellServiceImpl implements DBBuySellService{
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe"; // 에러날시 개인컴에서 사용하던 url을 이용해주세요
-	private String id = "java"; // 개인이 사용하시던 데베 아이디 이용해주세요
+	private String id = "jm"; // 개인이 사용하시던 데베 아이디 이용해주세요
 	private String pwd = "1234"; // 비밀번호도 마찬가지!
 	
 	private StockUserDTO stDTO = new StockUserDTO(); //여기에 아이디, 산주식, 주식갯수를 들어가고 저장함

@@ -6,6 +6,7 @@ import Controllers.BuySellController;
 import Controllers.LoginController;
 import DBService.DBService;
 import DBService.DBServiceImpl;
+import DBService.StockDBService;
 import Model.NowUser;
 import Run.Run;
 import javafx.fxml.FXMLLoader;
@@ -65,6 +66,7 @@ public class LoginServiceImpl implements LoginService {
 	public LoginServiceImpl() {
 		dbservice = new DBServiceImpl();
 		ms = new MainStockServiceImpl();
+
 	}
 
 	@Override
