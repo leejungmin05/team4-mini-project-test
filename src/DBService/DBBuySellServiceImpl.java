@@ -119,12 +119,15 @@ public class DBBuySellServiceImpl implements DBBuySellService{
 					System.out.println("돈이없습니다");
 				}else {
 					UpdateBuy(Number, buySellTotlaMoney, StockName,buysell);
+					Run.Run.setNOWUSERMONEY(buySellTotlaMoney);
 				}
 			}else {
 				if((buySellTotlaMoney) < 0 ) {
 					System.out.println("돈이없습니다");
 				}else {
 					InsertBuy(StockName ,buyStackNumber, buySellTotlaMoney);
+					Run.Run.setNOWUSERMONEY(buySellTotlaMoney);
+					
 				}
 				 
 			}
@@ -184,7 +187,6 @@ public class DBBuySellServiceImpl implements DBBuySellService{
 				}
 			}
 		}
-			
 		
 		
 		return 1;
@@ -200,7 +202,15 @@ public class DBBuySellServiceImpl implements DBBuySellService{
 		if(bysellCh) {
 			TotalPrice = stockNumber + preMoney; // 살주식과 원래있는 주식을 더해
 		}else {
-			TotalPrice = preMoney-stockNumber ; // 살주식과 원래있는 주식을 더해
+			TotalPrice = preMoney-stockNumber ; // 
+			
+			if(TotalPrice < 0) {
+				System.out.println("부족합니다 가지고있던 주식이");
+				return -1; // 부족하다는 뜻
+			
+			}
+			
+			
 		}
 		// 계속 팔수있게해버려서 일단 이거 수정요망
 		

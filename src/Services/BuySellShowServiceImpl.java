@@ -7,6 +7,8 @@ import Controllers.BuySellController;
 import Controllers.MainStockController;
 import DBService.DBBuySellService;
 import DBService.DBBuySellServiceImpl;
+import DBService.DBService;
+import DBService.DBServiceImpl;
 import DBService.StockDBService;
 import DBService.StockDBServiceImpl;
 import Model.Stock;
@@ -35,9 +37,11 @@ public class BuySellShowServiceImpl implements BuySellShowService {
 	private Label LableftMoney; // 현재 유저 머니
 	private TextField SaveStockTheMumber;
 	
+	
 	private String NowLoginUser = Run.Run.getNOWUSER(); // 현재 로그인된 자의 이름을 가져옴
 	
 	private String choiceStock ; // 현재 뭘 골라놧는지 볼수있는 스트링 
+	
 	
 	private StockDBService sdbs ;
 	private DBBuySellService dbbss; // 디비에 저장된 사고팔기를 위한 기능, StockUser 데베 가져온 DTO
@@ -56,6 +60,8 @@ public class BuySellShowServiceImpl implements BuySellShowService {
 		addStockList(); // 리스트에 DB에 모든 주식들을 저장하는 프로그램
 		ChoStack();// 여기서 실행, 한번 메소드 실행만되고 등록만 된다면 사용가능한듯 이게 등록해야 터치시 반응 얻을수있음
 		LabId.setText(NowLoginUser);
+		
+		LableftMoney.setText(Integer.toString(Run.Run.getNOWUSERMONEY()));
 	}
 
 	@Override
@@ -81,6 +87,7 @@ public class BuySellShowServiceImpl implements BuySellShowService {
 		
 		//스톡을 받아서 그안의 stockMoney를 저장한거임
 		
+		
 		series.setName(title);
 		series.setData(FXCollections.observableArrayList(
 				new XYChart.Data("prepre" ,stockMoney.getPrepreStockPrice()),
@@ -89,6 +96,7 @@ public class BuySellShowServiceImpl implements BuySellShowService {
 				));
 		
 		stockArea.getData().add(series);
+		LableftMoney.setText(Integer.toString(Run.Run.getNOWUSERMONEY()) );
 	}
 	
 	@Override
@@ -104,9 +112,7 @@ public class BuySellShowServiceImpl implements BuySellShowService {
 			
 			String  price = Integer.toString(sdbs.getStockList().getStockList().get(stockString.get((int)c)).getStockPrice()) ;
 			StockThePrice.setText(price);
-			
-			
-			
+
 			//System.out.println(NowLoginUser+","+stockString.get((int)c));
 			try {
 				String userPrice = Integer.toString(dbbss.getstDTO().getstockUserFind().get(NowLoginUser+","+stockString.get((int)c)).getSaveStockNumber());
@@ -130,14 +136,13 @@ public class BuySellShowServiceImpl implements BuySellShowService {
 	}
 	
 	public void BuyTest() {
-		
 		dbbss.ConcurStock(choiceStock, Integer.parseInt(StockTheMumber.getText()),true ); // 일단 여기는 사는거니깐
-		LableftMoney.setText(Integer.toString(dbbss.getNowUserMoney())); //돈이 줄긴하는데 한박자 느림
+		LableftMoney.setText(Integer.toString(Run.Run.getNOWUSERMONEY()));
 	}
 	
 	public void SellTest() {
 		dbbss.ConcurStock(choiceStock, Integer.parseInt(StockTheMumber.getText()),false ); // 일단 여기는 사는거니깐
-		LableftMoney.setText(Integer.toString(dbbss.getNowUserMoney())); //돈이 줄긴하는데 한박자 느림
+		LableftMoney.setText(Integer.toString(Run.Run.getNOWUSERMONEY()) );
 	}
 	
 	

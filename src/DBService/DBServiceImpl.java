@@ -19,6 +19,7 @@ public class DBServiceImpl implements DBService {
 	
 	
 	
+	
 	public DBServiceImpl() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -42,6 +43,7 @@ public class DBServiceImpl implements DBService {
 		// 아이디를 찾는 부분
 		if (userdto.getuserFind().containsKey(userId)) {
 			if (userdto.getuserFind().get(userId).getPwd().equals(UserPwd)) {
+				Run.Run.setNOWUSERMONEY(userdto.getuserFind().get(userId).getMoney());
 				System.out.println("로그인 성공");
 				return 1;
 
@@ -126,7 +128,9 @@ public class DBServiceImpl implements DBService {
 					user.setName(rs.getString("userName"));
 					user.setEmail(rs.getString("userEmail"));
 					user.setMoney(rs.getInt("userMoney"));
-
+					
+					
+					
 					userdto.setUserList(user);
 					userdto.setuserFind(rs.getString("userId"), user); // 아이디를 키값 밸류값은 그대로 넣어주고 찾을때 여기서씀
 					userdto.getUserList(); // ? 이건 머지? 일단 남겨놓음
@@ -147,6 +151,7 @@ public class DBServiceImpl implements DBService {
 				e.printStackTrace();
 			}
 		}
+		
 		
 	}
 
